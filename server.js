@@ -4,6 +4,11 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 // assign express() to a variable so we can chain methods to the server
 const app = express();
+// parse incoming string or array data
+// the extended: true option informs our server that there may be subarray data nested 
+app.use(express.urlencoded({ extended: true}));
+// parse incoming JSON data into the req.body
+app.use(express.json());
 
 // function that takes req.query as an argument and filters through the animals
 function filterByQuery(query, animalsArray) {
@@ -75,7 +80,11 @@ app.get('/api/animals/:id', (req, res) => {
 
 // tells server to listen for POST requests
 // POST requests represent the action of a client requesting the server to accept data
-app.post('/api/animals', (req, res) => {});
+app.post('/api/animals', (req, res) => {
+    // req.body is where our incoming content will be
+    console.log(req.body);
+    res.json(req.body);
+});
 
 // tells server to listen for requests
 // port numbers around 3000 are common practice

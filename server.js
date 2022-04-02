@@ -5,7 +5,26 @@ const app = express();
 
 // function that takes req.query as an argument and filters through the animals
 function filterByQuery(query, animalsArray) {
+    // set personalityTraitsArray to an empty array
+    let personalityTraitsArray = [];
+    // set filteredResults variable to animalsArray
     let filteredResults = animalsArray;
+    if(query.personalityTraits) {
+        // save personalityTraits as a dedicated array
+        // if personalityTraits is a string, place it into a new array and save
+        if(typeof query.personalityTraits === 'string') {
+            personalityTraitsArray = [query.personalityTraits];
+        } else {
+            personalityTraitsArray = query.personalityTraits;
+        }
+
+        // loop through each trait in the personalityTraits array
+        personalityTraitsArray.forEach(trait => {
+            // filter through each animal result to check for chosen trait
+            // set filteredResults to new array of results containing animals with the chosen trait
+            filteredResults = filteredResults.filter(animal => animal.personalityTraits.indexOf(trait) !== -1);
+        });
+    }
     if(query.diet) {
         filteredResults = filteredResults.filter(animal => animal.diet === query.diet);
     }

@@ -1,4 +1,4 @@
-const { animals } = require('./data/animals.json');
+const { animals } = require('./data/animals');
 const express = require('express');
 // use the port provided by heroku or default set to 3001
 const PORT = process.env.PORT || 3001;

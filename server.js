@@ -1,5 +1,7 @@
 const { animals } = require('./data/animals.json');
 const express = require('express');
+// use the port provided by heroku or default set to 3001
+const PORT = process.env.PORT || 3001;
 // assign express() to a variable so we can chain methods to the server
 const app = express();
 
@@ -54,6 +56,6 @@ app.get('/api/animals', (req, res) => {
 
 // tells server to listen for requests
 // port numbers around 3000 are common practice
-app.listen(3001, () => {
-    console.log(`API server now on port 3001!`);
+app.listen(PORT, () => {
+    console.log(`API server now on port ${PORT}!`);
 });

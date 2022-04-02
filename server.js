@@ -1,3 +1,6 @@
+const fs = require('fs');
+// path is a built-in module that provides utilities for working with file and directory paths
+const path = require('path');
 const { animals } = require('./data/animals');
 const express = require('express');
 // use the port provided by heroku or default set to 3001
@@ -53,11 +56,23 @@ function findById(id, animalsArray) {
 
 // function that creates new animal object 
 function createNewAnimal(body, animalsArray) {
-    console.log(body);
-    // our function's main code will go here
+    // set body to animal variable
+    const animal = body;
+    // push animal data to the animalsArray
+    animalsArray.push(animal);
+
+    // write data to animals.json file
+    fs.writeFileSync(
+        // __dirname represents the directory of the file we execute the code in
+        path.join(__dirname, './data/animals.json'),
+        // saves the JavaScript array data as JSON
+        // the null argument makes sure we don't edit any existing data
+        // the 2 indicates the creation of whitespace to make the values more readable
+        JSON.stringify({ animals: animalsArray}, null, 2)
+    );
 
     // return finished code to post route for response 
-    return body;
+    return animal;
 };
 
 // the get() method requires two arguments: 
@@ -92,8 +107,12 @@ app.get('/api/animals/:id', (req, res) => {
 app.post('/api/animals', (req, res) => {
     // set id based on what the next index of the array will be
     req.body.id = animals.length.toString();
-    // req.body is where our incoming content will be
-    res.json(req.body);
+
+    // set animal variable to createNewAnimal() function result
+    const animal = createNewAnimal(req.body, animals);
+
+    // send json
+    res.json(animal);
 });
 
 // tells server to listen for requests

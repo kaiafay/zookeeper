@@ -75,6 +75,23 @@ function createNewAnimal(body, animalsArray) {
     return animal;
 };
 
+// validates user data
+function validateAnimal(animal) {
+    if (!animal.name || typeof animal.name !== 'string') {
+        return false;
+      }
+      if (!animal.species || typeof animal.species !== 'string') {
+        return false;
+      }
+      if (!animal.diet || typeof animal.diet !== 'string') {
+        return false;
+      }
+      if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits)) {
+        return false;
+      }
+      return true;
+};
+
 // the get() method requires two arguments: 
 // the route the client will fetch from and a callback function that executes when that route is accessed with a GET request
 app.get('/api/animals', (req, res) => {
@@ -108,11 +125,17 @@ app.post('/api/animals', (req, res) => {
     // set id based on what the next index of the array will be
     req.body.id = animals.length.toString();
 
-    // set animal variable to createNewAnimal() function result
-    const animal = createNewAnimal(req.body, animals);
-
-    // send json
-    res.json(animal);
+    // if any data in req.body is incorrect, send 400 error back
+    if(!validateAnimal(req.body)) {
+        // res.status().send() is a response method to relay a message to the client making the request
+        // any error in the 400 range means that it's a user error
+        res.status(400).send('The animal is not properly formatted.');
+    } else {
+        // set animal variable to createNewAnimal() function result
+        const animal = createNewAnimal(req.body, animals);
+        // send json
+        res.json(animal);
+    }
 });
 
 // tells server to listen for requests

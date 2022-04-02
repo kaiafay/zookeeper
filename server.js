@@ -73,6 +73,10 @@ app.get('/api/animals/:id', (req, res) => {
     }
 });
 
+// tells server to listen for POST requests
+// POST requests represent the action of a client requesting the server to accept data
+app.post('/api/animals', (req, res) => {});
+
 // tells server to listen for requests
 // port numbers around 3000 are common practice
 app.listen(PORT, () => {

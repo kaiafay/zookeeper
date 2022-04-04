@@ -108,6 +108,17 @@
         "hungry"
       ],
       "id": "10"
+    },
+    {
+      "name": "Dog",
+      "species": "dog",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry",
+        "zany",
+        "loving"
+      ],
+      "id": "11"
     }
   ]
 }

@@ -146,6 +146,13 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
+// set route to animals page
+// a route that has the term api will deal with transference of JSON data
+// a route like "/animals" serves an HTML page
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
 // tells server to listen for requests
 // port numbers around 3000 are common practice
 app.listen(PORT, () => {

@@ -160,6 +160,7 @@ app.get('/zookeepers', (req, res) => {
 
 // catch invalid requests
 // the asterik defines any route that isn't previously defined
+// this route should always be last. otherwise it'll take precedence over named routes
 app.get('*', (req, res) => {
     // direct the user back to the homepage
     res.sendFile(path.join(__dirname, './public/index.html'));

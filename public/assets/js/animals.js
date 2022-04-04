@@ -29,8 +29,18 @@ const getAnimals = (formData = {}) => {
     queryUrl += `${key}=${value}&`;
   });
 
-  console.log(queryUrl);
-
+  // get request for animal data
+  fetch(queryUrl).then(response => {
+    if(!response.ok) {
+      return alert('Error: ' + response.statusText);
+    }
+    return response.json();
+  })
+  .then(animalData => {
+    console.log(animalData);
+    // display animal data on page
+    printResults(animalData);
+  });
 };
 
 const handleGetAnimalsSubmit = event => {

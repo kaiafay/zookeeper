@@ -138,6 +138,12 @@ app.post('/api/animals', (req, res) => {
     }
 });
 
+// the "/" route points to the root route of the server
+// this creates a homepage for the server
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 // tells server to listen for requests
 // port numbers around 3000 are common practice
 app.listen(PORT, () => {

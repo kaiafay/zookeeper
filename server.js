@@ -158,6 +158,13 @@ app.get('/zookeepers', (req, res) => {
     res.sendFile(path.join(__dirname, './public/zookeepers.html'));
 });
 
+// catch invalid requests
+// the asterik defines any route that isn't previously defined
+app.get('*', (req, res) => {
+    // direct the user back to the homepage
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 // tells server to listen for requests
 // port numbers around 3000 are common practice
 app.listen(PORT, () => {

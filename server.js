@@ -155,7 +155,7 @@ app.get('/animals', (req, res) => {
 
 // set route to zookeepers page
 app.get('/zookeepers', (req, res) => {
-    res.sendFile(path.joing(__dirname, './public/zookeepers.html'));
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
 });
 
 // tells server to listen for requests

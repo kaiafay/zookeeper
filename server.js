@@ -8,10 +8,12 @@ const PORT = process.env.PORT || 3001;
 // assign express() to a variable so we can chain methods to the server
 const app = express();
 // parse incoming string or array data
-// the extended: true option informs our server that there may be subarray data nested 
+// the "extended: true" option informs our server that there may be subarray data nested 
 app.use(express.urlencoded({ extended: true}));
 // parse incoming JSON data into the req.body
 app.use(express.json());
+// make public files readily available
+app.use(express.static('public'));
 
 // function that takes req.query as an argument and filters through the animals
 function filterByQuery(query, animalsArray) {

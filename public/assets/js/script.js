@@ -26,6 +26,28 @@ const handleAnimalFormSubmit = event => {
   }
   const animalObject = { name, species, diet, personalityTraits };
 
+  // send animal object to the back end
+  fetch('/api/animals', {
+    // specify type of request
+    method: 'POST',
+    // set headers to inform the request that this is going to be JSON data
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(animalObject)
+  })
+  .then(response => {
+    if(response.ok) {
+      return response.json();
+    }
+    alert('Error: ' + response.statusText);
+  })
+  .then(postResponse => {
+    console.log(postResponse);
+    alert('Thank you for adding an animal!');
+  });
+
 };
 
 $animalForm.addEventListener('submit', handleAnimalFormSubmit);

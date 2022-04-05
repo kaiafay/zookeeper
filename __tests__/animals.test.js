@@ -3,6 +3,8 @@ const fs = require("fs");
 const { filterByQuery, findById, createNewAnimal, validateAnimal } = require("../lib/animals.js");
 // import animals object from animals.json file
 const { animals } = require("../data/animals");
+// prevent writing to the JSON file when running tests
+jest.mock('fs');
 
 test("creates an animal object", () => {
   const animal = createNewAnimal(

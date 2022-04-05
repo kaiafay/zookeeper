@@ -1,9 +1,9 @@
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
-const fs = require('fs');
 // path is a built-in module that provides utilities for working with file and directory paths
 const path = require('path');
 const { animals } = require('./data/animals');
+// every time express() is called, a new Express.js object is created
 const express = require('express');
 // use the port provided by heroku or default set to 3001
 const PORT = process.env.PORT || 3001;
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true}));
 // parse incoming JSON data into the req.body
 app.use(express.json());
 // tells the server to use the router in apiRoutes 
-app.use('./api', apiRoutes);
+app.use('/api', apiRoutes);
 // tells the server to return our HTML routes
 app.use('/', htmlRoutes);
 // make public files readily available

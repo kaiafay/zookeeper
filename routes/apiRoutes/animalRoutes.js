@@ -20,7 +20,7 @@ router.get('/animals', (req, res) => {
 });
 
 // separate get() method to search for one animal at a time
-// a param route must come after other GET routs
+// a param route must come after other GET routes
 router.get('/animals/:id', (req, res) => {
     // set result variable to findById() function result
     const result = findById(req.params.id, animals);

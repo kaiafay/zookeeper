@@ -14,12 +14,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true}));
 // parse incoming JSON data into the req.body
 app.use(express.json());
+// make public files readily available
+app.use(express.static('public'));
 // tells the server to use the router in apiRoutes 
 app.use('/api', apiRoutes);
 // tells the server to return our HTML routes
 app.use('/', htmlRoutes);
-// make public files readily available
-app.use(express.static('public'));
 
 // tells server to listen for requests
 // port numbers around 3000 are common practice

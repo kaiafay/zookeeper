@@ -1,5 +1,3 @@
-const { handle } = require("express/lib/application");
-
 const $animalForm = document.querySelector('#animal-form');
 const $zookeeperForm = document.querySelector('#zookeeper-form');
 
